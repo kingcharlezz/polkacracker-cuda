@@ -71,14 +71,14 @@ def main():
 
     raw_data = b64decode(ENCODED)
 
-    salt = cp.asarray(raw_data[0:32])
+    salt = cp.array(raw_data[0:32])
     scrypt_n = struct.unpack("<I", raw_data[32:36])[0]
     scrypt_p = struct.unpack("<I", raw_data[36:40])[0]
     scrypt_r = struct.unpack("<I", raw_data[40:44])[0]
 
     offset = 32 + (3 * 4)
-    nonce = cp.asarray(raw_data[offset:offset + 24])
-    encrypted = cp.asarray(raw_data[offset + 24:])
+    nonce = cp.array(raw_data[offset:offset + 24])
+    encrypted = cp.array(raw_data[offset + 24:])
 
     cracked = False
 
